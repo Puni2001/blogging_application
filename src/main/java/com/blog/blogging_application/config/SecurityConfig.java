@@ -29,10 +29,10 @@ import java.util.List;
 public class SecurityConfig {
 
     private static final String[] PUBLIC_URLS = {
-        "/api/v1/auth/**",
-        "/v3/api-docs/**", "/v2/api-docs/**",
-        "/swagger-resources/**", "/swagger-ui/**",
-        "/webjars/**"
+            "/api/v1/auth/**",
+            "/v3/api-docs/**", "/v2/api-docs/**",
+            "/swagger-resources/**", "/swagger-ui/**",
+            "/webjars/**"
     };
 
     @Autowired
@@ -73,7 +73,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
 
             // enable CORS with our CorsConfigurationSource bean
-            .cors().and()
+            .cors().configurationSource(corsConfigurationSource()).and()
 
             // no sessions—REST is stateless
             .sessionManagement(m -> m.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -94,8 +94,7 @@ public class SecurityConfig {
             .authenticationProvider(daoAuthenticationProvider())
 
             // JWT filter before username/password auth filter
-            .addFilterBefore(jwtAuthenticationFilter, 
-                             org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthenticationFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -105,13 +104,13 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration cfg = new CorsConfiguration();
         cfg.setAllowCredentials(true);
-        cfg.setAllowedOriginPatterns(List.of("*"));
-        cfg.setAllowedHeaders(List.of("Authorization","Content-Type","Accept"));
-        cfg.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
-        cfg.setMaxAge(3600L);
+        cfg.setAllowedOriginPatterns(List.of("*"));  // Be cautious with wildcard '*', you may want to be more specific
+        cfg.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
+        cfg.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        cfg.setMaxAge(3600L);  // Cache pre-flight requests for 1 hour
 
         UrlBasedCorsConfigurationSource src = new UrlBasedCorsConfigurationSource();
-        src.registerCorsConfiguration("/**", cfg);
+        src.registerCorsConfiguration("/**", cfg); // Register CORS settings for all endpoints
         return src;
     }
 }
