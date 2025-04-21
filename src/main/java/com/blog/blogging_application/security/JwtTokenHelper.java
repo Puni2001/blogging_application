@@ -14,10 +14,18 @@ import java.util.Date;
 @Component
 public class JwtTokenHelper {
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
-    @Value("${jwt.expiration}")
-    private int jwtExpirationMs;
+    // @Value("${jwt.secret}")
+    // private String jwtSecret;
+    // @Value("${jwt.expiration}")
+    
+
+
+    @Value("${JWT_SECRET}")
+    private String jwtSecret;  // Spring will inject the value of JWT_SECRET from the environment
+
+    @Value("${JWT_EXPIRATION}")
+    private int jwtExpirationMs;  
+    
     private SecretKey key;
     // Initializes the key after the class is instantiated and the jwtSecret is injected, 
     // preventing the repeated creation of the key and enhancing performance

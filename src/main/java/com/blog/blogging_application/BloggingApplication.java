@@ -13,15 +13,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.blog.blogging_application.config.AppConstants;
 import com.blog.blogging_application.entities.Role;
 import com.blog.blogging_application.repositories.RoleRepo;
-
+import io.github.cdimascio.dotenv.Dotenv;
 @SpringBootApplication
 public class BloggingApplication implements CommandLineRunner {
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private RoleRepo roleRepo;
 	public static void main(String[] args) {
+		// Load environment variables from .env file
+		Dotenv  dotenv = Dotenv.load();
 		SpringApplication.run(BloggingApplication.class, args);
 	}
 	@Bean
