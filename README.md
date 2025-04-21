@@ -126,8 +126,9 @@ Let me know if you’d like a version with usage examples or a Swagger-UI link!
 
 ## 🗃 ER Diagram
 
-The ER diagram is available at:  
-📁 `src/main/resources/docs/ER_Diagram.png`
+The ER diagram shows the relationships between core entities in the blogging application (Users, Posts, Categories, Comments, etc.).
+![ER Diagram](src/main/resources/docs/ER_Diagram.png)
+![ER Diagram using draw io](src/main/resources/docs/bloggingdrawio.png)
 
 ---
 
