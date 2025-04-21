@@ -131,7 +131,11 @@ The ER diagram shows the relationships between core entities in the blogging app
 ![ER Diagram using draw io](src/main/resources/docs/bloggingdrawio.png)
 
 ---
+## Swagger Documentaion
 
+[View the PDF](Swagger.pdf)
+
+---
 ## 🛠 Setup Instructions
 
 1. Clone this repository:
